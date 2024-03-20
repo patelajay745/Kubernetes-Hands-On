@@ -1,4 +1,4 @@
-<font color="#663399">#Welcome to My Kubernetes Learning Journey!</font>
+## Welcome to My Kubernetes Learning Journey!
 <br>
 
 Welcome aboard, space cadet!  This is the launchpad for my epic journey into the <font color="#47FFC4">cosmos of Kubernetes 🪐</font>. Here, we'll be unraveling the mysteries of container orchestration, one hands-on lab and insightful note at a time!
