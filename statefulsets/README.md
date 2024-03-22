@@ -1,0 +1,1 @@
+### Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
