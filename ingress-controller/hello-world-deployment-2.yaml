@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment-2
+spec:
+  selector:
+    matchLabels:
+      greeting: hello
+      version: two
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        greeting: hello
+        version: two
+    spec:
+      containers:
+        - name: tools
+          image: patelajay745/tools:v2
