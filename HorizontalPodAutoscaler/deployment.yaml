@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ele-ecommerce
+spec:
+  selector:
+    matchLabels:
+      run: ele-ecommerce
+  template:
+    metadata:
+      labels:
+        run: ele-ecommerce
+    spec:
+      containers:
+      - name: ele-ecommerce
+        image: patelajay745/ecommerce-ele:v1
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 250m
+          requests:
+            cpu: 200m
