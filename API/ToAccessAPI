@@ -1,0 +1,14 @@
+
+Document URL : https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#api-overview
+#create Service account
+kubectl create serviceaccount aj --namespace default
+kubectl create clusterrolebinding aj-clusteradmin-binding --clusterrole=cluster-admin --serviceaccount=default:aj
+
+#getToken
+kubectl create token aj
+
+#get Url of cluster
+kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}
+
+#sample api call
+curl -X GET $APISERVER/apis/apps/v1/namespaces/default/deployments -H "Authorization: Bearer $TOKEN"
