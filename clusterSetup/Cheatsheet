@@ -1,0 +1,39 @@
+gcloud compute addresses create cks-master-ip \
+       --region=us-central1
+
+       
+gcloud compute addresses create cks-worker-ip \
+       --region=us-central1
+
+gcloud compute addresses list
+
+
+gcloud compute instances create cks-worker --zone=us-central1-a \
+--machine-type=e2-medium \
+--image=ubuntu-2004-focal-v20220419 \
+--image-project=ubuntu-os-cloud \
+--boot-disk-size=50GB \
+--address=cks-worker-ip
+
+
+gcloud compute instances create cks-master --zone=us-central1-a \
+--machine-type=e2-medium \
+--image=ubuntu-2004-focal-v20220419 \
+--image-project=ubuntu-os-cloud \
+--boot-disk-size=50GB \
+--address=cks-master-ip
+
+gcloud compute instances list
+
+gcloud compute ssh cks-master
+
+sudo -i
+bash <(curl -s https://raw.githubusercontent.com/killer-sh/cks-course-environment/master/cluster-setup/latest/install_master.sh)
+
+
+gcloud compute ssh cks-worker
+sudo -i
+bash <(curl -s https://raw.githubusercontent.com/killer-sh/cks-course-environment/master/cluster-setup/latest/install_worker.sh)
+
+
+gcloud compute firewall-rules create nodeports --allow tcp:30000-40000
