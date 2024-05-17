@@ -1,0 +1,19 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8sdisallowrootuser
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sDisallowRootUser
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sdisallowrootuser
+
+        violation[{"msg": msg}] {
+          input.review.object.spec.containers[_].securityContext.runAsUser == 0
+          msg := "Running containers as root is not allowed"
+        }
+
